@@ -31,7 +31,6 @@ import random
 from vector import *
 from Obj import *
 
-
 c1 = Render() #Inicializando la clase Render.
 
 #Pregunar si está bien implementada esta función.
@@ -347,16 +346,61 @@ def triangle(A, B, C, col): #Función que dibuja un triángulo.
 
             z = A.z * u + B.z * v + C.z * w #Se calcula la z.
         
-            #print(c1.zBuffer[x][y] < z)
-            
+
             if (c1.zBuffer[x][y] < z):
                 #print(c1.zBuffer[x][y])
                 c1.zBuffer[x][y] = z #Se setea la z.
                 #print(c1.zBuffer[x][y])
                 glVertex(x, y) #Se dibuja el punto.
-            else: 
-                continue
             #glVertex(x, y) #Se dibuja el punto.
+
+
+def modelo(path, scale, translate, col1): 
+    
+    r = Object(path) #Llamando al método Object del archivo Obj.py.
+
+    #Recorriendo las caras del objeto y dibujando las líneas en el framebuffer.
+    for face in r.faces: 
+        #print(face) #Debuggeo.
+        
+        if len(face) == 4: #Validando que la cara tenga 4 vértices.
+            #El array de caras es bidimensional en este código.
+            f1 = face[0][0] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
+            f2 = face[1][0] - 1 #Agarrando el índice 0.
+            f4 = face[3][0] - 1 #Agarrando el índice 2.
+
+            #Transformando los vértices.
+            v1 = r.transform_vertex(r.vertices[f1], scale, translate)
+            v2 = r.transform_vertex(r.vertices[f2], scale, translate)
+            v3 = r.transform_vertex(r.vertices[f3], scale, translate)
+            v4 = r.transform_vertex(r.vertices[f4], scale, translate)
+
+            #print("Cara: ", f1, f2, f3, f4)
+
+            #Dibujando los triangulos.
+            triangle(v1, v2, v4, col1)
+            triangle(v2, v3, v4, col1)
+
+
+        elif len(face) == 3: #Validando que la cara tenga 3 vértices.
+            f1 = face[0][0] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
+            f2 = face[1][0] - 1 #Agarrando el índice 0.
+            f3 = face[2][0] - 1 #Agarrando el índice 1.
+            #f4 = face[3][0] - 1 #Agarrando el índice 2.
+
+            #print(r.vertices[f1], scale, translate)
+
+            #Transformando los vértices.
+            v1 = r.transform_vertex(r.vertices[f1], scale, translate)
+            v2 = r.transform_vertex(r.vertices[f2], scale, translate)
+            v3 = r.transform_vertex(r.vertices[f3], scale, translate)
+
+            #print("Cara: ", f1, f2, f3)
+            #print(v1, v2, v3)
+
+            #colr = color(1, 0, 0) #Color para el triángulo.
+
+            triangle(v1, v2, v3, col1) #Llamando al método triangle para dibujar un triángulo.
 
 def zBuffer(): 
     
@@ -377,49 +421,6 @@ def zBuffer():
                 c1.zBufferE[i][j] = color(1, 1, 1)
             else: #Si hay algún color sesgado entre 0 y 1, entonces se pintan.
                 c1.zBufferE[i][j] = color(int(c1.zBufferE[i][j]), int(c1.zBufferE[i][j]), int(c1.zBufferE[i][j]))
-
-def modelo(path, scale, translate, col1): #Método que carga un modelo .obj.
-    #Enviando el archivo a Obj.
-    r = Object(path) #Se crea un objeto.
-
-    #Recorriendo las caras del objeto y dibujando las líneas en el framebuffer.
-    for face in r.faces: 
-        #print(face) #Debuggeo.
-        
-        if len(face) == 4: #Validando que la cara tenga 4 vértices.
-            #El array de caras es bidimensional en este código.
-            f1 = face[0][0] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
-            f2 = face[1][0] - 1 #Agarrando el índice 0.
-            f3 = face[2][0] - 1 #Agarrando el índice 1.
-            f4 = face[3][0] - 1 #Agarrando el índice 2.
-
-            #Transformando los vértices.
-            v1 = r.transform_vertex(r.vertices[f1], scale, translate)
-            v2 = r.transform_vertex(r.vertices[f2], scale, translate)
-            v3 = r.transform_vertex(r.vertices[f3], scale, translate)
-            v4 = r.transform_vertex(r.vertices[f4], scale, translate)
-
-            #print("Cara: ", f1, f2, f3, f4)
-
-            #Dibujando los triangulos.
-            triangle(v1, v2, v4, col1)
-            triangle(v2, v3, v4, col1)
-
-
-        elif len(face) == 3: #Validando que la cara tenga 3 vértices.
-            f1 = face[0][0] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
-            f2 = face[1][0] - 1 #Agarrando el índice 0.
-            f3 = face[2][0] - 1 #Agarrando el índice 1.
-
-            #print(r.vertices[f1], scale, translate)
-
-            #Transformando los vértices.
-            v1 = r.transform_vertex(r.vertices[f1], scale, translate)
-            v2 = r.transform_vertex(r.vertices[f2], scale, translate)
-            v3 = r.transform_vertex(r.vertices[f3], scale, translate)
-
-            triangle(v1, v2, v3, col1) #Llamando al método triangle para dibujar un triángulo.
-
 
 def glFinish(): #Función que escribe el archivo de imagen resultante.
 

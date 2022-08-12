@@ -8,6 +8,7 @@ Referencias:
 #Archivo que tendrá el método main del programa
 
 from gl import * #Importando el archivo gl.py, para crear la imagen.
+from Obj import * #Importando los métodos del archivo Obj.py.
 from vector import * #Importando los métodos del archivo vector.py.
 
 def main():
@@ -15,6 +16,12 @@ def main():
     glClearColor(1, 1, 1) #Color del fondo.
     glClear() #Limpiando el framebuffer con el color creado en glClearColor.
     
+    
+    #glVertex(0.1, 0.3) #Dibujando el punto.
+
+    #glColor(0.5, 0.3, 0.1) #Asignando el color del punto.
+
+    #col1 = color(0.501, 0.501, 0.501) #Color gris.
 
     col1 = (1, 1, 1) #Negro.
 
@@ -24,11 +31,11 @@ def main():
 
     scale = (5, 5, 10) #Escala del objeto. Tamaño del objeto.
     translate = (512, 300, 0) #Traslación del objeto. #Posición del objeto en el framebuffer.
+    
 
-    modelo("./Porsche.obj", scale, translate, col1) #Llamando al método modelo para dibujar el objeto.
+    modelo("./Porsche.obj", scale, translate, col1)
 
     zBuffer() #Haciendo la copia del z-buffer.
-
     glFinish() #Escribiendo el framebuffer en la imagen y guardándola en un archivo.
 
 main()

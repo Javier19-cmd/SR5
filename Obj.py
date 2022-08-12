@@ -18,7 +18,6 @@ class Object(object):
 
         self.faces = [] #Lista para las caras del obj.
         self.vertices = [] #Lista para los vértices del obj.
-        self.vt = [] #Lista para los vértices de textura del obj.
         
         for line in lines:
 
@@ -36,16 +35,6 @@ class Object(object):
                         )
                     )
                 )
-
-            if prefix == 'vt': #Si el prefijo es v, se agrega el valor a la lista de vértices.
-                self.vertices.append(
-                    list(
-                        map(
-                            float, value.strip().split(' ') #Se quitan los strings inválidos y los espacios. Luego se convierten a float.
-                        )
-                    )
-                )
-
                 #print(vertices) #Debuggeo.
             if prefix == 'f': #Si el prefijo es f, se agrega el valor a la lista de caras.
                 try: 
