@@ -72,6 +72,8 @@ class Render(object):
         #Colocar el punto en el viewport.
         self.framebuffer[y][x] = self.colorP #El color del punto es el color actual.
 
+    
+
 
     #Método que escribe el archivo bmp.
     def write(self): #Escribir un archivo, pero con el zbuffer.
