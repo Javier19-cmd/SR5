@@ -367,6 +367,7 @@ def modelo(path, scale, translate, col1):
             #El array de caras es bidimensional en este código.
             f1 = face[0][0] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
             f2 = face[1][0] - 1 #Agarrando el índice 0.
+            f3 = face[2][0] - 1 #Agarrando el índice 1.
             f4 = face[3][0] - 1 #Agarrando el índice 2.
 
             #Transformando los vértices.
@@ -426,5 +427,3 @@ def glFinish(): #Función que escribe el archivo de imagen resultante.
 
    c1.write() #Escribiendo el archivo.
    c1.write2() #Escribiendo el archivo con el zBuffer.
-
-
