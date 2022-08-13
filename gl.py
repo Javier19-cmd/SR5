@@ -470,18 +470,18 @@ def texturas(path1, path2, col1): #Método para dibujar las texturas.
             #Transformando los vértices.
             #Escalando los vértices para que se vean bien.
             vt1 = V3(
-                r.vts[f1][0] * 100,
-                r.vts[f1][1] * 100
+                r.vts[f1][0] * t.width,
+                r.vts[f1][1] * t.height
             )
 
             vt2 = V3(
-                r.vts[f2][0] * 100,
-                r.vts[f2][1] * 100
+                r.vts[f2][0] * t.width,
+                r.vts[f2][1] * t.height
             )
 
             vt3 = V3(
-                r.vts[f3][0] * 100,
-                r.vts[f3][1] * 100
+                r.vts[f3][0] * t.width,
+                r.vts[f3][1] * t.height
             )
 
             #print("Cara: ", f1, f2, f3)
