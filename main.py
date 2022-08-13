@@ -8,11 +8,10 @@ Referencias:
 #Archivo que tendrá el método main del programa
 
 from gl import * #Importando el archivo gl.py, para crear la imagen.
-from Obj import * #Importando los métodos del archivo Obj.py.
-from vector import * #Importando los métodos del archivo vector.py.
+from textures import * #Importando los métodos del archivo textures.py.
 
 def main():
-    glCreateWindow(1024, 1024) #Creando la ventana.
+    glCreateWindow(7168, 7168) #Creando la ventana.
     glClearColor(1, 1, 1) #Color del fondo.
     glClear() #Limpiando el framebuffer con el color creado en glClearColor.
     
@@ -23,19 +22,22 @@ def main():
 
     #col1 = color(0.501, 0.501, 0.501) #Color gris.
 
-    col1 = (1, 1, 1) #Negro.
+    #col1 = (1, 1, 1) #Negro.
 
     #triangle(V3(10, 70), V3(50, 160), V3(70, 80), col1) #Llamando al método triangle para dibujar un triángulo.
     #triangle(V3(180, 50), V3(150, 1), V3(70, 180), col2) #Llamando al método triangle para dibujar un triángulo.
     #triangle(V3(180, 150), V3(120, 160), V3(130, 180), col3) #Llamando al método triangle para dibujar un triángulo.
 
-    scale = (450, 450, 600) #Escala del objeto. Tamaño del objeto.
-    translate = (512, 512, 0) #Traslación del objeto. #Posición del objeto en el framebuffer.
+    # scale = (450, 450, 600) #Escala del objeto. Tamaño del objeto.
+    # translate = (512, 512, 0) #Traslación del objeto. #Posición del objeto en el framebuffer.
     
 
-    modelo("./model.obj", scale, translate, col1)
+    # modelo("./model.obj", scale, translate, col1)
 
-    zBuffer() #Haciendo la copia del z-buffer.
+    # zBuffer() #Haciendo la copia del z-buffer.
+    
+    prueba() #Llamando al método prueba.
+
     glFinish() #Escribiendo el framebuffer en la imagen y guardándola en un archivo.
 
 main()

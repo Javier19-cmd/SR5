@@ -27,9 +27,9 @@ SR4:
 
 from Render import * #Importando la clase Render.
 from utilidades import *
-import random
 from vector import *
 from Obj import *
+from textures import *
 
 c1 = Render() #Inicializando la clase Render.
 
@@ -422,6 +422,13 @@ def zBuffer():
                 c1.zBufferE[i][j] = color(1, 1, 1)
             else: #Si hay algún color sesgado entre 0 y 1, entonces se pintan.
                 c1.zBufferE[i][j] = color(int(c1.zBufferE[i][j]), int(c1.zBufferE[i][j]), int(c1.zBufferE[i][j]))
+
+
+def prueba(): #Función que dibuja una prueba.
+    #Método para hacer el ejemplo de Dennis.
+    t = Texture("./earth.bmp") #Se carga la textura.
+
+    c1.framebuffer = t.pixels #Se setea el framebuffer con la textura.
 
 def glFinish(): #Función que escribe el archivo de imagen resultante.
 
