@@ -426,6 +426,6 @@ def zBuffer():
 def glFinish(): #Función que escribe el archivo de imagen resultante.
 
    c1.write() #Escribiendo el archivo.
-   c1.write2() #Escribiendo el archivo con el zBuffer.
+   #c1.write2() #Escribiendo el archivo con el zBuffer.
 
 
