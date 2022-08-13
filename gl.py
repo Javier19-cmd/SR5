@@ -223,7 +223,7 @@ def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que 
         #print("Color en gl: ", Color)
         c1.colorP = Color #Se setea el color del punto.
 
-def modelo(path, scale, translate, col1): 
+def modelo(path, scale, translate, col1): #Método para cargar un modelo 3D.
     
     r = Object(path) #Llamando al método Object del archivo Obj.py.
 
@@ -424,11 +424,65 @@ def zBuffer():
                 c1.zBufferE[i][j] = color(int(c1.zBufferE[i][j]), int(c1.zBufferE[i][j]), int(c1.zBufferE[i][j]))
 
 
-def prueba(): #Función que dibuja una prueba.
+def texturas(path1, path2, col1): #Método para dibujar las texturas.
+
     #Método para hacer el ejemplo de Dennis.
-    t = Texture("./earth.bmp") #Se carga la textura.
+    t = Texture(path2) #Abriendo el bmp de la textura y procesando sus pixeles.
 
     c1.framebuffer = t.pixels #Se setea el framebuffer con la textura.
+    
+    r = Object(path1) #Llamando al método Object del archivo Obj.py.
+
+    #Recorriendo las caras del objeto y dibujando las líneas en el framebuffer.
+    for face in r.faces: 
+        #print(face) #Debuggeo.
+        
+        if len(face) == 4: #Validando que la cara tenga 4 vértices.
+            #El array de caras es bidimensional en este código.
+            f1 = face[0][1] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
+            f2 = face[1][1] - 1 #Agarrando el índice 0.
+            f3 = face[2][1] - 1 #Agarrando el índice 1.
+            f4 = face[3][1] - 1 #Agarrando el índice 2.
+
+            #Transformando los vértices.
+            vt1 = V3(*r.vts[f1])
+            vt2 = V3(*r.vts[f2])
+            vt3 = V3(*r.vts[f3])
+            vt4 = V3(*r.vts[f4])
+
+            #print("Cara: ", f1, f2, f3, f4)
+
+            #Dibujando los triangulos.
+            triangle(vt1, vt2, vt4, col1)
+            triangle(vt2, vt3, vt4, col1)
+
+
+        elif len(face) == 3: #Validando que la cara tenga 3 vértices.
+            f1 = face[0][1] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
+            f2 = face[1][1] - 1 #Agarrando el índice 0.
+            f3 = face[2][1] - 1 #Agarrando el índice 1.
+            #f4 = face[3][0] - 1 #Agarrando el índice 2.
+
+            #print(r.vts[f1]) #Debuggeo.
+
+            #print(r.vertices[f1], scale, translate)
+
+            #Transformando los vértices.
+            vt1 = V3(*r.vts[f1])
+            vt2 = V3(*r.vts[f2])
+            vt3 = V3(*r.vts[f3])
+
+            #print("Cara: ", f1, f2, f3)
+            #print(v1, v2, v3)
+
+            #colr = color(1, 0, 0) #Color para el triángulo.
+
+            #Pintando un triángulo por ahora.
+            glLine(vt1, vt2)
+            glLine(vt2, vt3)
+            glLine(vt3, vt1)
+
+            #triangle(vt1, vt2, vt3, col1) #Llamando al método triangle para dibujar un triángulo.
 
 def glFinish(): #Función que escribe el archivo de imagen resultante.
 

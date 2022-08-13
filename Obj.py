@@ -18,6 +18,7 @@ class Object(object):
 
         self.faces = [] #Lista para las caras del obj.
         self.vertices = [] #Lista para los vértices del obj.
+        self.vts = [] #Lista para los vértices de textura del obj.
         
         for line in lines:
 
@@ -34,7 +35,7 @@ class Object(object):
                             float, value.strip().split(' ') #Se quitan los strings inválidos y los espacios. Luego se convierten a float.
                         )
                     )
-                )
+                )                
                 #print(vertices) #Debuggeo.
             if prefix == 'f': #Si el prefijo es f, se agrega el valor a la lista de caras.
                 try: 
@@ -57,6 +58,15 @@ class Object(object):
                             for face in value.strip().split(' ') #Se quita el espacio.
                         ]
                     )
+
+            if prefix == 'vt': #Si el prefijo es vt, se agrega el valor a la lista de vértices de textura.
+                self.vts.append(
+                    list(
+                        map(
+                            float, value.strip().split(' ') #Se quitan los strings inválidos y los espacios. Luego se convierten a float.
+                        )
+                    )
+                )
 
 #Función que transforma los vértices de la estructura de la imagen.
     def transform_vertex(self, vertex, scale, translate): 
