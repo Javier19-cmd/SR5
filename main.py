@@ -18,7 +18,7 @@ def main():
     
     #glVertex(0.1, 0.3) #Dibujando el punto.
 
-    glColor(0.5, 0.3, 0.1) #Asignando el color del punto.
+    glColor(1, 1, 1) #Asignando el color del punto.
 
     #col1 = color(0.501, 0.501, 0.501) #Color gris.
 
@@ -36,7 +36,7 @@ def main():
 
     # zBuffer() #Haciendo la copia del z-buffer.
     
-    texturas("./earth.obj", "./earth.bmp", col1) #Llamando al método texturas.
+    texturas("./model.obj", "./model.bmp", col1) #Llamando al método texturas.
 
     glFinish() #Escribiendo el framebuffer en la imagen y guardándola en un archivo.
 

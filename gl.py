@@ -468,12 +468,24 @@ def texturas(path1, path2, col1): #Método para dibujar las texturas.
             #print(r.vertices[f1], scale, translate)
 
             #Transformando los vértices.
-            vt1 = V3(*r.vts[f1])
-            vt2 = V3(*r.vts[f2])
-            vt3 = V3(*r.vts[f3])
+            #Escalando los vértices para que se vean bien.
+            vt1 = V3(
+                r.vts[f1][0] * 100,
+                r.vts[f1][1] * 100
+            )
+
+            vt2 = V3(
+                r.vts[f2][0] * 100,
+                r.vts[f2][1] * 100
+            )
+
+            vt3 = V3(
+                r.vts[f3][0] * 100,
+                r.vts[f3][1] * 100
+            )
 
             #print("Cara: ", f1, f2, f3)
-            #print(v1, v2, v3)
+            print(vt1, vt2, vt3)
 
             #colr = color(1, 0, 0) #Color para el triángulo.
 
