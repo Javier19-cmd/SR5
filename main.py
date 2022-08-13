@@ -11,7 +11,7 @@ from gl import * #Importando el archivo gl.py, para crear la imagen.
 from textures import * #Importando los métodos del archivo textures.py.
 
 def main():
-    glCreateWindow(7168, 7168) #Creando la ventana.
+    glCreateWindow(4096, 2048) #Creando la ventana.
     glClearColor(1, 1, 1) #Color del fondo.
     glClear() #Limpiando el framebuffer con el color creado en glClearColor.
     
@@ -36,7 +36,7 @@ def main():
 
     # zBuffer() #Haciendo la copia del z-buffer.
     
-    prueba() #Llamando al método prueba.
+    prueba()
 
     glFinish() #Escribiendo el framebuffer en la imagen y guardándola en un archivo.
 
