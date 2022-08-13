@@ -203,9 +203,11 @@ def glLine(v1, v2):
             #print("Punto final: ", movx2, movy2)
 
         if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
+            #print(x, y)
             c1.Vertex(y, x)
         else: #Si la línea es horizontal, entonces se cambia el orden de los puntos.
             #print("Puntos dados en decimales ", x0, y0, x1, y1)
+            #print(x, y)
             c1.Vertex(x, y)
 
 
@@ -426,12 +428,13 @@ def zBuffer():
 
 def texturas(path1, path2, col1): #Método para dibujar las texturas.
 
+    
+    r = Object(path1) #Llamando al método Object del archivo Obj.py.
+
     #Método para hacer el ejemplo de Dennis.
     t = Texture(path2) #Abriendo el bmp de la textura y procesando sus pixeles.
 
     c1.framebuffer = t.pixels #Se setea el framebuffer con la textura.
-    
-    r = Object(path1) #Llamando al método Object del archivo Obj.py.
 
     #Recorriendo las caras del objeto y dibujando las líneas en el framebuffer.
     for face in r.faces: 
@@ -452,9 +455,9 @@ def texturas(path1, path2, col1): #Método para dibujar las texturas.
 
             #print("Cara: ", f1, f2, f3, f4)
 
-            #Dibujando los triangulos.
-            triangle(vt1, vt2, vt4, col1)
-            triangle(vt2, vt3, vt4, col1)
+            # #Dibujando los triangulos.
+            # triangle(vt1, vt2, vt4, col1)
+            # triangle(vt2, vt3, vt4, col1)
 
 
         elif len(face) == 3: #Validando que la cara tenga 3 vértices.
@@ -485,14 +488,15 @@ def texturas(path1, path2, col1): #Método para dibujar las texturas.
             )
 
             #print("Cara: ", f1, f2, f3)
-            print(vt1, vt2, vt3)
+            #print(vt1, vt2, vt3)
 
             #colr = color(1, 0, 0) #Color para el triángulo.
 
-            #Pintando un triángulo por ahora.
-            glLine(vt1, vt2)
-            glLine(vt2, vt3)
-            glLine(vt3, vt1)
+            # #Pintando un triángulo por ahora.
+            # glLine(vt1, vt2)
+            # glLine(vt2, vt3)
+            # glLine(vt3, vt1)
+            # break
 
             #triangle(vt1, vt2, vt3, col1) #Llamando al método triangle para dibujar un triángulo.
 

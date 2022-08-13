@@ -19,7 +19,7 @@ def main():
     
     #glVertex(0.1, 0.3) #Dibujando el punto.
 
-    glColor(1, 1, 1) #Asignando el color del punto.
+    glColor(0, 0, 0) #Asignando el color del punto.
 
     #col1 = color(0.501, 0.501, 0.501) #Color gris.
 
@@ -29,11 +29,11 @@ def main():
     #triangle(V3(180, 50), V3(150, 1), V3(70, 180), col2) #Llamando al método triangle para dibujar un triángulo.
     #triangle(V3(180, 150), V3(120, 160), V3(130, 180), col3) #Llamando al método triangle para dibujar un triángulo.
 
-    # scale = (450, 450, 600) #Escala del objeto. Tamaño del objeto.
-    # translate = (512, 512, 0) #Traslación del objeto. #Posición del objeto en el framebuffer.
+    scale = (450, 450, 600) #Escala del objeto. Tamaño del objeto.
+    translate = (512, 512, 0) #Traslación del objeto. #Posición del objeto en el framebuffer.
     
 
-    # modelo("./model.obj", scale, translate, col1)
+    #modelo("./model.obj", scale, translate, col1)
 
     # zBuffer() #Haciendo la copia del z-buffer.
     
