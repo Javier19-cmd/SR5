@@ -7,9 +7,9 @@ class Texture: #Clase para la textura.
         
     def lectura(self): #Archivo que sirve para leer la textura.
         with open(self.path, 'rb') as image:
-            image.seek(2 + 4 + 2 + 2) #Saltando algunos bytes. Estas sumas se pueden quitar y dejarlo como un número.
+            image.seek(10) #Saltando algunos bytes. Estas sumas se pueden quitar y dejarlo como un número.
             header_size = struct.unpack("=l", image.read(4))[0] #El l es formato nativo.
-            image.seek(2 + 4 + 2 + 2 + 4 + 4) #Saltando algunos bytes.
+            image.seek(18) #Saltando algunos bytes.
             #Leyendo el ancho y el alto de la textura.
             self.width = struct.unpack("=l", image.read(4))[0]
             self.height = struct.unpack("=l", image.read(4))[0]

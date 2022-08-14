@@ -11,15 +11,15 @@ from gl import * #Importando el archivo gl.py, para crear la imagen.
 from textures import * #Importando los métodos del archivo textures.py.
 
 def main():
-    #glCreateWindow(4096, 2048) #Creando la ventana.
-    glCreateWindow(1024, 1024) #Creando la ventana.
+    glCreateWindow(2048, 2048) #Creando la ventana.
+    #glCreateWindow(1024, 1024) #Creando la ventana.
     glClearColor(1, 1, 1) #Color del fondo.
     glClear() #Limpiando el framebuffer con el color creado en glClearColor.
     
     
     #glVertex(0.1, 0.3) #Dibujando el punto.
 
-    glColor(0, 0, 0) #Asignando el color del punto.
+    glColor(0.6, 0.4, 0.7) #Asignando el color del punto.
 
     #col1 = color(0.501, 0.501, 0.501) #Color gris.
 
@@ -33,11 +33,11 @@ def main():
     translate = (512, 512, 0) #Traslación del objeto. #Posición del objeto en el framebuffer.
     
 
-    #modelo("./model.obj", scale, translate, col1)
+   # modelo("./model.obj", scale, translate, col1)
 
     # zBuffer() #Haciendo la copia del z-buffer.
     
-    texturas("./model.obj", "./model.bmp", col1) #Llamando al método texturas.
+    texturas("./Pallet.obj", "./Pallet.bmp", col1) #Llamando al método texturas.
 
     glFinish() #Escribiendo el framebuffer en la imagen y guardándola en un archivo.
 
