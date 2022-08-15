@@ -11,15 +11,15 @@ from gl import * #Importando el archivo gl.py, para crear la imagen.
 from textures import * #Importando los métodos del archivo textures.py.
 
 def main():
+    #glCreateWindow(2048, 2048) #Creando la ventana.
     glCreateWindow(1024, 1024) #Creando la ventana.
-    #glCreateWindow(1024, 1024) #Creando la ventana.
     glClearColor(1, 1, 1) #Color del fondo.
     glClear() #Limpiando el framebuffer con el color creado en glClearColor.
     
     
     #glVertex(0.1, 0.3) #Dibujando el punto.
 
-    glColor(0.6, 0.4, 0.7) #Asignando el color del punto.
+    glColor(0.5, 0.5, 0.5) #Asignando el color del punto.
 
     #col1 = color(0.501, 0.501, 0.501) #Color gris.
 

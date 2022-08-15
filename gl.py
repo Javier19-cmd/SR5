@@ -472,14 +472,14 @@ def texturas(path1, path2, col): #Método para dibujar las texturas.
             # triangle(vt2, vt3, vt4)
 
             # #Dibujando triángulos con líneas por el momento.
-            # glLine(vt1, vt2)
-            # glLine(vt2, vt3)
-            # glLine(vt3, vt1)
+            glLine(vt1, vt2)
+            glLine(vt2, vt3)
+            glLine(vt3, vt1)
             
             # #Dibujar triángulos con líneas y el vértice 4.
-            # glLine(vt2, vt3)
-            # glLine(vt3, vt4)
-            # glLine(vt4, vt2)
+            glLine(vt2, vt3)
+            glLine(vt3, vt4)
+            glLine(vt4, vt2)
 
 
         elif len(face) == 3: #Validando que la cara tenga 3 vértices.
