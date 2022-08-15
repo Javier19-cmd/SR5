@@ -25,7 +25,7 @@ class Render(object):
 
     colorZ = 0 #Color del zbuffer.
 
-    tpath = ""  #Path de las texturas.
+    tpath = None  #Path de las texturas.
 
 
     #Método que hace el viewport del archivo.

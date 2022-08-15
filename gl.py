@@ -293,6 +293,8 @@ def modelo(path1, path2, scale, translate, col1): #Método para cargar un modelo
 
                 #colr = color(1, 0, 0) #Color para el triángulo.
 
+                #print("Textura: ", c1.tpath) #Debuggeo.
+
                 triangle(
                     col1, #Llamando al método triangle para dibujar un triángulo.
                     (v1, v2, v3)
@@ -377,7 +379,7 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
 
     A, B, C = vertices #Se obtienen los vértices.
 
-    if c1.tpath != "": #Si el path de la textura no está vacío, entonces se dibuja el triángulo.
+    if c1.tpath: #Si el path de la textura no está vacío, entonces se dibuja el triángulo.
         tA, tB, tC = tv #Se obtienen los valores de A, B y C.
 
     #print(col[0], col[1], col[2])
@@ -440,14 +442,15 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
             #print("Color del punto", c1.colorP)
 
             z = A.z * w + B.z * v + C.z * u #Se calcula la z.
-        
+            
 
             if (c1.zBuffer[x][y] < z):
                 #print(c1.zBuffer[x][y])
                 c1.zBuffer[x][y] = z #Se setea la z.
 
-                if c1.tpath: 
+                if c1.tpath:
                     t = Texture(c1.tpath) #Se crea la textura.
+                    #print("Textura: ", t)
                     tx = tA.x * w + tB.x * v + tC.x * u #Se calcula la textura x.
                     ty = tA.y * w + tB.y * v + tC.y * u #Se calcula la textura y.
                     c1.colorP = t.get_color_with_intensity(tx, ty, i) #Se setea el color del punto.

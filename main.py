@@ -23,7 +23,7 @@ def main():
 
     #col1 = color(0.501, 0.501, 0.501) #Color gris.
 
-    col1 = (0.5, 0.3, 0.1) #Negro.
+    col1 = (0.5, 0.5, 0.5) #Negro.
 
     #triangle(V3(10, 70), V3(50, 160), V3(70, 80), col1) #Llamando al método triangle para dibujar un triángulo.
     #triangle(V3(180, 50), V3(150, 1), V3(70, 180), col2) #Llamando al método triangle para dibujar un triángulo.

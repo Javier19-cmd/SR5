@@ -45,9 +45,9 @@ class Texture: #Clase para la textura.
         #print(x, y) #Imprimiendo las coordenadas.
         #print(self.pixels) #Imprimiendo el color.
 
-        b = self.pixels[y][x][0] * intensity #Obteniendo el valor de b.
-        g = self.pixels[y][x][1] * intensity #Obteniendo el valor de g.
-        r = self.pixels[y][x][2] * intensity #Obteniendo el valor de r.
+        b = round(self.pixels[y][x][0] * intensity) #Obteniendo el valor de b.
+        g = round(self.pixels[y][x][1] * intensity) #Obteniendo el valor de g.
+        r = round(self.pixels[y][x][2] * intensity) #Obteniendo el valor de r.
 
         return color(r/255, g/255, b/255) #Se devuelve el color de un pixel con una intensidad.
 
