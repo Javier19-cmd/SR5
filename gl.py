@@ -253,11 +253,25 @@ def modelo(path1, path2, scale, translate, col1): #Método para cargar un modelo
             v3 = r.transform_vertex(r.vertices[f3], scale, translate)
             v4 = r.transform_vertex(r.vertices[f4], scale, translate)
 
+            ft1 = face[0][1] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
+            ft2 = face[1][1] - 1 #Agarrando el índice 0.
+            ft3 = face[2][1] - 1 #Agarrando el índice 1.
+            ft4 = face[3][0] - 1 #Agarrando el índice 2.
+
+            #Obteniendo los vértices de texuras.
+            vt1 = V3(*r.vts[ft1])
+
+            vt2 = V3(*r.vts[ft2])
+
+            vt3 = V3(*r.vts[ft3])
+
+            vt4 = V3(*r.vts[ft4])
+
             #print("Cara: ", f1, f2, f3, f4)
 
             #Dibujando los triangulos.
-            triangle(col1, (v1, v2, v4))
-            triangle(col1, (v2, v3, v4))
+            triangle(col1, (v1, v2, v4), (vt1, vt2, vt4))
+            triangle(col1, (v2, v3, v4), (vt2, vt3, vt4))
 
 
         elif len(face) == 3: #Validando que la cara tenga 3 vértices.
@@ -383,7 +397,7 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
 
     A, B, C = vertices #Se obtienen los vértices.
 
-    if c1.tpath != "": #Si el path2 no está vacío, entonces se dibuja el triángulo con textura.
+    if c1.tpath: #Si el path2 no está vacío, entonces se dibuja el triángulo con textura.
         tA, tB, tC = tv #Se obtienen los vértices de textura.
 
     #print(col[0], col[1], col[2])
@@ -450,7 +464,8 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
 
             if (c1.zBuffer[x][y] < z):
                 c1.zBuffer[x][y] = z #Se setea la z.
-                if c1.tpath != "":
+                
+                if c1.tpath: #Si el path2 no está vacío, entonces se dibuja el triángulo con textura.
                     tx = tA.x * w + tB.x * v + tC.x * u
                     ty = tA.y * w + tB.y * v + tC.y * u
                     c1.colorP = c2.get_color_with_intensity(tx, ty, i)
