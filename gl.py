@@ -225,10 +225,11 @@ def modelo(path1, path2, scale, translate, col1): #Método para cargar un modelo
     
     r = Object(path1) #Llamando al método Object del archivo Obj.py.
 
-    #Método para hacer el ejemplo de Dennis.
-    t = Texture(path2) #Abriendo el bmp de la textura y procesando sus pixeles.
+    if path2: 
+        #Método para hacer el ejemplo de Dennis.
+        t = Texture(path2) #Abriendo el bmp de la textura y procesando sus pixeles.
 
-    c1.tpath = path2 #Se setea la textura.
+        c1.tpath = path2 #Se setea la textura.
 
     #print("Textura: ", c1.tpath) #Debuggeo.
 
@@ -252,8 +253,8 @@ def modelo(path1, path2, scale, translate, col1): #Método para cargar un modelo
             #print("Cara: ", f1, f2, f3, f4)
 
             #Dibujando los triangulos.
-            triangle(v1, v2, v4, col1)
-            triangle(v2, v3, v4, col1)
+            triangle(col1, (v1, v2, v4))
+            triangle(col1, (v2, v3, v4))
 
 
         elif len(face) == 3: #Validando que la cara tenga 3 vértices.
@@ -380,6 +381,7 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
     A, B, C = vertices #Se obtienen los vértices.
 
     if c1.tpath: #Si el path de la textura no está vacío, entonces se dibuja el triángulo.
+        t = Texture(c1.tpath) #Se crea la textura.
         tA, tB, tC = tv #Se obtienen los valores de A, B y C.
 
     #print(col[0], col[1], col[2])
@@ -449,7 +451,6 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
                 c1.zBuffer[x][y] = z #Se setea la z.
 
                 if c1.tpath:
-                    t = Texture(c1.tpath) #Se crea la textura.
                     #print("Textura: ", t)
                     tx = tA.x * w + tB.x * v + tC.x * u #Se calcula la textura x.
                     ty = tA.y * w + tB.y * v + tC.y * u #Se calcula la textura y.

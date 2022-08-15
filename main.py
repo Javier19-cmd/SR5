@@ -23,13 +23,13 @@ def main():
 
     #col1 = color(0.501, 0.501, 0.501) #Color gris.
 
-    col1 = (0.5, 0.5, 0.5) #Negro.
+    col1 = (1, 1, 1) #Negro.
 
     #triangle(V3(10, 70), V3(50, 160), V3(70, 80), col1) #Llamando al método triangle para dibujar un triángulo.
     #triangle(V3(180, 50), V3(150, 1), V3(70, 180), col2) #Llamando al método triangle para dibujar un triángulo.
     #triangle(V3(180, 150), V3(120, 160), V3(130, 180), col3) #Llamando al método triangle para dibujar un triángulo.
 
-    scale = (400, 400, 700) #Escala del objeto. Tamaño del objeto.
+    scale = (400, 400, 500) #Escala del objeto. Tamaño del objeto.
     translate = (512, 512, 0) #Traslación del objeto. #Posición del objeto en el framebuffer.
     
 
