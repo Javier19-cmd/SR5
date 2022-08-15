@@ -11,7 +11,7 @@ from gl import * #Importando el archivo gl.py, para crear la imagen.
 from textures import * #Importando los métodos del archivo textures.py.
 
 def main():
-    glCreateWindow(2048, 2048) #Creando la ventana.
+    glCreateWindow(1024, 1024) #Creando la ventana.
     #glCreateWindow(1024, 1024) #Creando la ventana.
     glClearColor(1, 1, 1) #Color del fondo.
     glClear() #Limpiando el framebuffer con el color creado en glClearColor.
@@ -23,7 +23,7 @@ def main():
 
     #col1 = color(0.501, 0.501, 0.501) #Color gris.
 
-    col1 = (1, 1, 1) #Negro.
+    col1 = (0, 0, 0) #Negro.
 
     #triangle(V3(10, 70), V3(50, 160), V3(70, 80), col1) #Llamando al método triangle para dibujar un triángulo.
     #triangle(V3(180, 50), V3(150, 1), V3(70, 180), col2) #Llamando al método triangle para dibujar un triángulo.
@@ -37,7 +37,9 @@ def main():
 
     # zBuffer() #Haciendo la copia del z-buffer.
     
-    texturas("./Pallet.obj", "./Pallet.bmp", col1) #Llamando al método texturas.
+    texturas("./model.obj", "./model.bmp", col1)
+
+    #texturas("./Pallet.obj", "./Pallet.bmp", col1) #Llamando al método texturas.
 
     glFinish() #Escribiendo el framebuffer en la imagen y guardándola en un archivo.
 

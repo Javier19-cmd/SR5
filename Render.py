@@ -25,20 +25,6 @@ class Render(object):
 
     colorZ = 0 #Color del zbuffer.
 
-    #Método que dibuja un punto.
-    def punto(self,x, y):
-        #En este método se dibuja un punto en la pantalla.
-        global equis, ye #Instanciando las variables globales de las posiciones del punto.
-
-        #Llenando las variables globales.
-        equis = x
-        ye = y
-
-        #Esta función dibuja un punto en la pantalla.
-        #print(framebufobsfer[x][y])
-
-        self.framebuffer[y][x] = self.colorP #El color del punto es el color actual.
-
 
     #Método que hace el viewport del archivo.
     def View(self, posX, posY, ancho, alto):

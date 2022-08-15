@@ -133,12 +133,7 @@ def glVertex(x, y): #Función que pueda cambiar el color de un punto de la panta
     #print("Ancho: ", c1.width) #Ancho de la pantalla.
     #print("Alto: ", c1.height) #Alto de la pantalla
 
-    #Verificando que las coordenadas no sean negativas.
-    if x < 0 or y < 0: #Si las coordenadas son negativas, entonces se da un mensaje de error.
-        return
-    elif x > c1.width or y > c1.height: #Verificando que las coordenadas no se salgan de la pantalla.
-        return
-    else: #Si todo está bien, entonces se cambia el color del punto.
+    if 0 < x < c1.width and 0 < y < c1.height: #Verificando que las coordenadas estén dentro del viewport.
         c1.Vertex(x, y) #Se manda a hacer el punto.
 
 #Función que crea una línea entre dos puntos. Esta tiene que estar en el rango de 0 a 1.
@@ -204,11 +199,11 @@ def glLine(v1, v2):
 
         if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
             #print("Coordenadas: ", x, y)
-            c1.Vertex(y, x)
+            glVertex(y, x)
         else: #Si la línea es horizontal, entonces se cambia el orden de los puntos.
             #print("Puntos dados en decimales ", x0, y0, x1, y1)
             #print("Coordenadas: ", x, y)
-            c1.Vertex(x, y)
+            glVertex(x, y)
 
 
 def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que funciona glVertex(). Los parámetros deben ser números en el rango de 0 a 1.
@@ -476,15 +471,15 @@ def texturas(path1, path2, col): #Método para dibujar las texturas.
             # triangle(vt1, vt2, vt4)
             # triangle(vt2, vt3, vt4)
 
-            #Dibujando triángulos con líneas por el momento.
-            glLine(vt1, vt2)
-            glLine(vt2, vt3)
-            glLine(vt3, vt1)
+            # #Dibujando triángulos con líneas por el momento.
+            # glLine(vt1, vt2)
+            # glLine(vt2, vt3)
+            # glLine(vt3, vt1)
             
-            #Dibujar triángulos con líneas y el vértice 4.
-            glLine(vt2, vt3)
-            glLine(vt3, vt4)
-            glLine(vt4, vt2)
+            # #Dibujar triángulos con líneas y el vértice 4.
+            # glLine(vt2, vt3)
+            # glLine(vt3, vt4)
+            # glLine(vt4, vt2)
 
 
         elif len(face) == 3: #Validando que la cara tenga 3 vértices.
