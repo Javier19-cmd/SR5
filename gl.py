@@ -220,9 +220,13 @@ def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que 
         #print("Color en gl: ", Color)
         c1.colorP = Color #Se setea el color del punto.
 
-def modelo(path, scale, translate, col1): #Método para cargar un modelo 3D.
+#Este método recibe ahora dos paths. Uno es para el obj y el otro es para el bmp.
+def modelo(path1, path2, scale, translate, col1): #Método para cargar un modelo 3D.
     
-    r = Object(path) #Llamando al método Object del archivo Obj.py.
+    r = Object(path1) #Llamando al método Object del archivo Obj.py.
+
+    #Método para hacer el ejemplo de Dennis.
+    t = Texture(path2) #Abriendo el bmp de la textura y procesando sus pixeles.
 
     #Recorriendo las caras del objeto y dibujando las líneas en el framebuffer.
     for face in r.faces: 
@@ -249,24 +253,38 @@ def modelo(path, scale, translate, col1): #Método para cargar un modelo 3D.
 
 
         elif len(face) == 3: #Validando que la cara tenga 3 vértices.
-            f1 = face[0][0] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
-            f2 = face[1][0] - 1 #Agarrando el índice 0.
-            f3 = face[2][0] - 1 #Agarrando el índice 1.
+            
+            #Jalando las caras de las texturas.
+
+            f1 = face[0][1] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
+            f2 = face[1][1] - 1 #Agarrando el índice 0.
+            f3 = face[2][1] - 1 #Agarrando el índice 1.
             #f4 = face[3][0] - 1 #Agarrando el índice 2.
 
             #print(r.vertices[f1], scale, translate)
 
-            #Transformando los vértices.
-            v1 = r.transform_vertex(r.vertices[f1], scale, translate)
-            v2 = r.transform_vertex(r.vertices[f2], scale, translate)
-            v3 = r.transform_vertex(r.vertices[f3], scale, translate)
+            #Obteniendo los vértices de texuras.
+            vt1 = V3(
+                r.vts[f1][0] * t.width,
+                r.vts[f1][1] * t.height
+            )
+
+            vt2 = V3(
+                r.vts[f2][0] * t.width,
+                r.vts[f2][1] * t.height
+            )
+
+            vt3 = V3(
+                r.vts[f3][0] * t.width,
+                r.vts[f3][1] * t.height
+            )
 
             #print("Cara: ", f1, f2, f3)
             #print(v1, v2, v3)
 
             #colr = color(1, 0, 0) #Color para el triángulo.
 
-            triangle(v1, v2, v3, col1) #Llamando al método triangle para dibujar un triángulo.
+            triangle(vt1, vt2, vt3, col1) #Llamando al método triangle para dibujar un triángulo.
 
 
 def cross(V1, V2): #Producto cruz entre dos vectores, pero con return de V3.
