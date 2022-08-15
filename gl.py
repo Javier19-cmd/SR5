@@ -32,6 +32,7 @@ from Obj import *
 from textures import *
 
 c1 = Render() #Inicializando la clase Render.
+c2 = Texture() #Inicializando las texturas.
 
 #Pregunar si está bien implementada esta función.
 def glInit(): #Se usará para poder inicializar cualquier objeto interno que requiera el software de render.
@@ -227,9 +228,11 @@ def modelo(path1, path2, scale, translate, col1): #Método para cargar un modelo
 
     if path2: 
         #Método para hacer el ejemplo de Dennis.
-        t = Texture(path2) #Abriendo el bmp de la textura y procesando sus pixeles.
+        c2.lectura(path2) #Abriendo el bmp de la textura y procesando sus pixeles.
 
         c1.tpath = path2 #Se setea la textura.
+
+        #print("Path de la textura: ", c1.tpath) #Debuggeo.
 
     #print("Textura: ", c1.tpath) #Debuggeo.
 
@@ -380,18 +383,17 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
 
     A, B, C = vertices #Se obtienen los vértices.
 
-    if c1.tpath: #Si el path de la textura no está vacío, entonces se dibuja el triángulo.
-        t = Texture(c1.tpath) #Se crea la textura.
-        tA, tB, tC = tv #Se obtienen los valores de A, B y C.
+    if c1.tpath != "": #Si el path2 no está vacío, entonces se dibuja el triángulo con textura.
+        tA, tB, tC = tv #Se obtienen los vértices de textura.
 
     #print(col[0], col[1], col[2])
 
     #print(A, B, C) #Se imprimen las coordenadas.
 
-    L = V3(0, 0, -1) #Vector de la luz.
+    L = V3(0, 0, 1) #Vector de la luz.
 
     #Calculando la normal.
-    N = cross((C - A), (B - A)) #Se calcula la normal.
+    N = cross((B - A), (C - A)) #Se calcula la normal.
 
     #print("Normal: ", N) #Se imprime la normal.
 
@@ -447,16 +449,13 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
             
 
             if (c1.zBuffer[x][y] < z):
-                #print(c1.zBuffer[x][y])
                 c1.zBuffer[x][y] = z #Se setea la z.
+                if c1.tpath != "":
+                    tx = tA.x * w + tB.x * v + tC.x * u
+                    ty = tA.y * w + tB.y * v + tC.y * u
+                    c1.colorP = c2.get_color_with_intensity(tx, ty, i)
 
-                if c1.tpath:
-                    #print("Textura: ", t)
-                    tx = tA.x * w + tB.x * v + tC.x * u #Se calcula la textura x.
-                    ty = tA.y * w + tB.y * v + tC.y * u #Se calcula la textura y.
-                    c1.colorP = t.get_color_with_intensity(tx, ty, i) #Se setea el color del punto.
-
-                #print(c1.zBuffer[x][y])
+                    #print(c1.colorP)
                 glVertex(x, y) #Se dibuja el punto.
             #glVertex(x, y) #Se dibuja el punto.
 
@@ -488,9 +487,9 @@ def texturas(path1, path2, col): #Método para dibujar las texturas.
     r = Object(path1) #Llamando al método Object del archivo Obj.py.
 
     #Método para hacer el ejemplo de Dennis.
-    t = Texture(path2) #Abriendo el bmp de la textura y procesando sus pixeles.
+    c2.lectura(path2) #Abriendo el bmp de la textura y procesando sus pixeles.
 
-    c1.framebuffer = t.pixels #Se setea el framebuffer con la textura.
+    c1.framebuffer = c2.pixels #Se setea el framebuffer con la textura.
 
     print(c1.colorFondo)
 
@@ -507,23 +506,23 @@ def texturas(path1, path2, col): #Método para dibujar las texturas.
 
             #Transformando los vértices.
             vt1 = V3(
-                r.vts[f1][0] * t.width,
-                r.vts[f1][1] * t.height
+                r.vts[f1][0] * c2.width,
+                r.vts[f1][1] * c2.height
             )
 
             vt2 = V3(
-                r.vts[f2][0] * t.width,
-                r.vts[f2][1] * t.height
+                r.vts[f2][0] * c2.width,
+                r.vts[f2][1] * c2.height
             )
 
             vt3 = V3(
-                r.vts[f3][0] * t.width,
-                r.vts[f3][1] * t.height
+                r.vts[f3][0] * c2.width,
+                r.vts[f3][1] * c2.height
             )
 
             vt4 = V3(
-                r.vts[f4][0] * t.width,
-                r.vts[f4][1] * t.height
+                r.vts[f4][0] * c2.width,
+                r.vts[f4][1] * c2.height
             )
 
             #print("Cara: ", f1, f2, f3, f4)
@@ -557,18 +556,18 @@ def texturas(path1, path2, col): #Método para dibujar las texturas.
             #Transformando los vértices.
             #Obteniendo los vértices del tamaño de la escala y la translación.
             vt1 = V3(
-                r.vts[f1][0] * t.width,
-                r.vts[f1][1] * t.height
+                r.vts[f1][0] * c2.width,
+                r.vts[f1][1] * c2.height
             )
 
             vt2 = V3(
-                r.vts[f2][0] * t.width,
-                r.vts[f2][1] * t.height
+                r.vts[f2][0] * c2.width,
+                r.vts[f2][1] * c2.height
             )
 
             vt3 = V3(
-                r.vts[f3][0] * t.width,
-                r.vts[f3][1] * t.height
+                r.vts[f3][0] * c2.width,
+                r.vts[f3][1] * c2.height
             )
             
             #print("Cara: ", f1, f2, f3)

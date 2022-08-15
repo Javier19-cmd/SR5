@@ -1,12 +1,9 @@
 from utilidades import *
 
 class Texture: #Clase para la textura.
-    def __init__(self, path):
-        self.path = path #Haciendo global la variable path.
-        self.lectura() #Llamando al método de lectura.
         
-    def lectura(self): #Archivo que sirve para leer la textura.
-        with open(self.path, 'rb') as image:
+    def lectura(self, path): #Archivo que sirve para leer la textura.
+        with open(path, 'rb') as image:
             image.seek(10) #Saltando algunos bytes. Estas sumas se pueden quitar y dejarlo como un número.
             header_size = struct.unpack("=l", image.read(4))[0] #El l es formato nativo.
             image.seek(18) #Saltando algunos bytes.
