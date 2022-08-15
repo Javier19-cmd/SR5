@@ -430,7 +430,7 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
 
     for x in range(min.x, max.x + 1):
         for y in range(min.y, max.y + 1):
-            u, v, w = baricentrico(A, B, C, V3(x, y)) #Se calcula el baricéntrico.
+            w, v, u = baricentrico(A, B, C, V3(x, y)) #Se calcula el baricéntrico.
 
             if u < 0 or v < 0 or w < 0: #Si el baricéntrico es mayor o igual a 0, entonces se dibuja el punto.
                 #print("Punto: ", x, y)
