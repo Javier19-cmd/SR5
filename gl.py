@@ -241,37 +241,59 @@ def modelo(path1, path2, scale, translate, col1): #Método para cargar un modelo
         #print(face) #Debuggeo.
         
         if len(face) == 4: #Validando que la cara tenga 4 vértices.
-            #El array de caras es bidimensional en este código.
-            f1 = face[0][0] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
-            f2 = face[1][0] - 1 #Agarrando el índice 0.
-            f3 = face[2][0] - 1 #Agarrando el índice 1.
-            f4 = face[3][0] - 1 #Agarrando el índice 2.
+            
+            if c1.tpath: #Si hay una textura, entonces se dibuja la cara con textura.
+            
+                #El array de caras es bidimensional en este código.
+                f1 = face[0][0] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
+                f2 = face[1][0] - 1 #Agarrando el índice 0.
+                f3 = face[2][0] - 1 #Agarrando el índice 1.
+                f4 = face[3][0] - 1 #Agarrando el índice 2.
 
-            #Transformando los vértices.
-            v1 = r.transform_vertex(r.vertices[f1], scale, translate)
-            v2 = r.transform_vertex(r.vertices[f2], scale, translate)
-            v3 = r.transform_vertex(r.vertices[f3], scale, translate)
-            v4 = r.transform_vertex(r.vertices[f4], scale, translate)
+                #Transformando los vértices.
+                v1 = r.transform_vertex(r.vertices[f1], scale, translate)
+                v2 = r.transform_vertex(r.vertices[f2], scale, translate)
+                v3 = r.transform_vertex(r.vertices[f3], scale, translate)
+                v4 = r.transform_vertex(r.vertices[f4], scale, translate)
 
-            ft1 = face[0][1] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
-            ft2 = face[1][1] - 1 #Agarrando el índice 0.
-            ft3 = face[2][1] - 1 #Agarrando el índice 1.
-            ft4 = face[3][0] - 1 #Agarrando el índice 2.
+                ft1 = face[0][1] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
+                ft2 = face[1][1] - 1 #Agarrando el índice 0.
+                ft3 = face[2][1] - 1 #Agarrando el índice 1.
+                ft4 = face[3][1] - 1 #Agarrando el índice 2.
 
-            #Obteniendo los vértices de texuras.
-            vt1 = V3(*r.vts[ft1])
+                #Obteniendo los vértices de texuras.
+                vt1 = V3(*r.vts[ft1])
 
-            vt2 = V3(*r.vts[ft2])
+                vt2 = V3(*r.vts[ft2])
 
-            vt3 = V3(*r.vts[ft3])
+                vt3 = V3(*r.vts[ft3])
 
-            vt4 = V3(*r.vts[ft4])
+                vt4 = V3(*r.vts[ft4])
 
-            #print("Cara: ", f1, f2, f3, f4)
+                #print("Cara: ", f1, f2, f3, f4)
 
-            #Dibujando los triangulos.
-            triangle(col1, (v1, v2, v4), (vt1, vt2, vt4))
-            triangle(col1, (v2, v3, v4), (vt2, vt3, vt4))
+                #Dibujando los triangulos.
+                triangle(col1, (v1, v2, v4), (vt1, vt2, vt4))
+                triangle(col1, (v2, v3, v4), (vt2, vt3, vt4))
+            else: #Si no hay textura, entonces se dibuja la cara sin textura.
+                #El array de caras es bidimensional en este código.
+                f1 = face[0][0] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
+                f2 = face[1][0] - 1 #Agarrando el índice 0.
+                f3 = face[2][0] - 1 #Agarrando el índice 1.
+                f4 = face[3][0] - 1 #Agarrando el índice 2.
+
+                #Transformando los vértices.
+                v1 = r.transform_vertex(r.vertices[f1], scale, translate)
+                v2 = r.transform_vertex(r.vertices[f2], scale, translate)
+                v3 = r.transform_vertex(r.vertices[f3], scale, translate)
+                v4 = r.transform_vertex(r.vertices[f4], scale, translate)
+
+                #print("Cara: ", f1, f2, f3, f4)
+
+                #Dibujando los triangulos.
+                triangle(col1, (v1, v2, v4))
+                triangle(col1, (v2, v3, v4))
+                
 
 
         elif len(face) == 3: #Validando que la cara tenga 3 vértices.
