@@ -42,11 +42,16 @@ class Texture: #Clase para la textura.
         #print(x, y) #Imprimiendo las coordenadas.
         #print(self.pixels) #Imprimiendo el color.
 
-        b = int(self.pixels[y][x][0] * intensity) #Obteniendo el valor de b.
-        g = int(self.pixels[y][x][1] * intensity) #Obteniendo el valor de g.
-        r = int(self.pixels[y][x][2] * intensity) #Obteniendo el valor de r.
+        #print("Anc: ", self.width, "Alt: ", self.height) #Imprimiendo el ancho y el alto de la textura.
 
-        return color(r/255, g/255, b/255) #Se devuelve el color de un pixel con una intensidad.
+        #Si las coordenadas están dentro de la textura, se devuelve el color con la intensidad.
+        if  0 < x < self.width and 0  < y < self.height:
+            b = int(self.pixels[y][x][0] * intensity) #Obteniendo el valor de b.
+            g = int(self.pixels[y][x][1] * intensity) #Obteniendo el valor de g.
+            r = int(self.pixels[y][x][2] * intensity) #Obteniendo el valor de r.
 
+            return color(r/255, g/255, b/255) #Se devuelve el color de un pixel con una intensidad.
+        else:
+            return color(0, 0, 0)
 #t = Texture("./earth.bmp") #Se crea la textura.
 #print(t.get_color_with_intensity(0, 0, 1)) #Se obtiene el color de un pixel.
