@@ -260,7 +260,8 @@ def modelo(path1, path2, scale, translate, col1): #Método para cargar un modelo
                 ft2 = face[1][1] - 1 #Agarrando el índice 0.
                 ft3 = face[2][1] - 1 #Agarrando el índice 1.
                 ft4 = face[3][1] - 1 #Agarrando el índice 2.
-
+                
+                
                 #Obteniendo los vértices de texuras.
                 vt1 = V3(*r.vts[ft1])
 
@@ -275,6 +276,7 @@ def modelo(path1, path2, scale, translate, col1): #Método para cargar un modelo
                 #Dibujando los triangulos.
                 triangle(col1, (v1, v2, v4), (vt1, vt2, vt4))
                 triangle(col1, (v2, v3, v4), (vt2, vt3, vt4))
+            
             else: #Si no hay textura, entonces se dibuja la cara sin textura.
                 #El array de caras es bidimensional en este código.
                 f1 = face[0][0] - 1 #Se le resta 1 porque el array de vértices empieza en 0.
@@ -421,6 +423,7 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
 
     if c1.tpath: #Si el path2 no está vacío, entonces se dibuja el triángulo con textura.
         tA, tB, tC = tv #Se obtienen los vértices de textura.
+        #print(tA, tB, tC)
 
     #print(col[0], col[1], col[2])
 
