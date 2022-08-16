@@ -29,15 +29,15 @@ def main():
     #triangle(V3(180, 50), V3(150, 1), V3(70, 180), col2) #Llamando al método triangle para dibujar un triángulo.
     #triangle(V3(180, 150), V3(120, 160), V3(130, 180), col3) #Llamando al método triangle para dibujar un triángulo.
 
-    scale = (250, 250, 300) #Escala del objeto. Tamaño del objeto.
-    translate = (512, 400, 0) #Traslación del objeto. #Posición del objeto en el framebuffer.
+    scale = (300, 300, 400) #Escala del objeto. Tamaño del objeto.
+    translate = (512, 300, 0) #Traslación del objeto. #Posición del objeto en el framebuffer.
     
 
     #modelo("./Pallet.obj", scale, translate, col1)
 
     # zBuffer() #Haciendo la copia del z-buffer.
     
-    modelo("./Fiat.obj", "./0027.bmp", scale, translate, col1)
+    modelo("./Fiat.obj", "./00271.bmp", scale, translate, col1)
 
     #texturas("./model.obj", "./model.bmp", col1)
 
