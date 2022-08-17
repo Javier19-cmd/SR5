@@ -436,7 +436,7 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
 
     #print("Normal: ", N) #Se imprime la normal.
 
-    i = L.normalice() @ N.normalice() * 5 #Se calcula el producto punto. Esto es para la intensidad del color.
+    i = (L.normalice() @ N.normalice()) * 5 #Se calcula el producto punto. Esto es para la intensidad del color.
 
     #print("Intensidad: ", i) #Se imprime la intensidad.
 
@@ -488,9 +488,9 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
                 c1.zBuffer[x][y] = z #Se setea la z.
                 
                 if c1.tpath: #Si el path2 no está vacío, entonces se dibuja el triángulo con textura.
-                    tx = tA.x * w + tB.x * v + tC.x * u
-                    ty = tA.y * w + tB.y * v + tC.y * u
-                    c1.colorP = c2.get_color_with_intensity(tx, ty, i)
+                    tx = tA.x * w + tB.x * v + tC.x * u #Se calcula la x de la textura.
+                    ty = tA.y * w + tB.y * v + tC.y * u #Se calcula la y de la textura.
+                    c1.colorP = c2.get_color_with_intensity(tx, ty, i) #Se setea el color del punto con textura.
 
                     #print(c1.colorP)
                 glVertex(x, y) #Se dibuja el punto.
