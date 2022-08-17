@@ -436,12 +436,15 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
 
     #print("Normal: ", N) #Se imprime la normal.
 
-    i = L.normalice() @ N.normalice() #Se calcula el producto punto. Esto es para la intensidad del color.
+    i = L.normalice() @ N.normalice() * 5 #Se calcula el producto punto. Esto es para la intensidad del color.
 
     #print("Intensidad: ", i) #Se imprime la intensidad.
 
     if i < 0: #Si i es menor a 1, entonces el punto está opuesto a la luz.
         i = abs(i) #Se le saca el valor absoluto a i.
+        #print(i) #Se imprime i.
+    if i > 1: #Si i es mayor a 1, entonces el punto está en la misma dirección que la luz.
+        i = 1 #Se le asigna el valor de 1 a i.
     
     #print("Producto punto: ", i)
 
