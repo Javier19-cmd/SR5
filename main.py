@@ -19,11 +19,11 @@ def main():
     
     #glVertex(0.1, 0.3) #Dibujando el punto.
 
-    glColor(1, 1, 1) #Asignando el color del punto.
+    #glColor(0.6, 0.1, 0.9) #Asignando el color del punto.
 
     #col1 = color(0.501, 0.501, 0.501) #Color gris.
 
-    col1 = (1, 1, 1) #Negro.
+    col1 = (0.6, 0.1, 0.9) #Otro color.
 
     #triangle(V3(10, 70), V3(50, 160), V3(70, 80), col1) #Llamando al método triangle para dibujar un triángulo.
     #triangle(V3(180, 50), V3(150, 1), V3(70, 180), col2) #Llamando al método triangle para dibujar un triángulo.

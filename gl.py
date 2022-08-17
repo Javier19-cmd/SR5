@@ -441,7 +441,7 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
     #print("Intensidad: ", i) #Se imprime la intensidad.
 
     if i < 0: #Si i es menor a 1, entonces el punto está opuesto a la luz.
-        return
+        i = abs(i) #Se le saca el valor absoluto a i.
     
     #print("Producto punto: ", i)
 
@@ -452,12 +452,6 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
         ) #Se setea el color del punto en escala de grises.
 
     #print("Color: ", c1.colorP)
-
-    # c1.colorP = color(
-    #     random.uniform(0, 1),
-    #     random.uniform(0, 1),
-    #     random.uniform(0, 1)
-    # ) #Se setea el color del punto.
 
     #c1.colorP = col #Se setea el color del punto. (En este caso gris)
 
