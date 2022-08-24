@@ -11,7 +11,7 @@ from gl import * #Importando el archivo gl.py, para crear la imagen.
 from textures import * #Importando los métodos del archivo textures.py.
 
 def main():
-    glCreateWindow(1024, 1024) #Creando la ventana.
+    glCreateWindow(2028, 2028) #Creando la ventana.
     #glCreateWindow(5000, 5000) #Creando la ventana.
     glClearColor(1, 1, 1) #Color del fondo.
     glClear() #Limpiando el framebuffer con el color creado en glClearColor.
@@ -29,15 +29,15 @@ def main():
     #triangle(V3(180, 50), V3(150, 1), V3(70, 180), col2) #Llamando al método triangle para dibujar un triángulo.
     #triangle(V3(180, 150), V3(120, 160), V3(130, 180), col3) #Llamando al método triangle para dibujar un triángulo.
 
-    scale = (300, 300, 400) #Escala del objeto. Tamaño del objeto.
-    translate = (512, 300, 0) #Traslación del objeto. #Posición del objeto en el framebuffer.
+    scale = (700, 700, 750) #Escala del objeto. Tamaño del objeto.
+    translate = (1024, 600, 0) #Traslación del objeto. #Posición del objeto en el framebuffer.
     
 
     #modelo("./Pallet.obj", scale, translate, col1)
 
     # zBuffer() #Haciendo la copia del z-buffer.
     
-    modelo("./Fiat.obj", "./00271.bmp", scale, translate, col1)
+    modelo("./plants_obj.obj", "material.bmp", scale, translate, col1)
 
     #texturas("./model.obj", "./model.bmp", col1)
 
