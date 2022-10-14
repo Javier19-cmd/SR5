@@ -33,10 +33,10 @@ def main():
 
     # scale = (1000, 1000, 1050) #Escala del objeto. Tamaño del objeto.
     # translate = (2000, 600, 0) #Traslación del objeto. #Posición del objeto en el framebuffer.
-    scale = (100, 100, 150) #Escala para los bb8's.
+    scale = (200, 200, 250) #Escala para los bb8's.
     translate = (512, 300, 0) #Traslación para los bb8's.
     
-    modelo("./box.obj", "./box.bmp", scale, translate) #Llamando al método modelo para dibujar el modelo 3D.
+    modelo("./droids.obj", "./droids.bmp", scale, translate) #Llamando al método modelo para dibujar el modelo 3D.
     dibujar("triangle", col1) #Llamando al método dibujar para dibujar el modelo 3D.
 
     # zBuffer() #Haciendo la copia del z-buffer.
