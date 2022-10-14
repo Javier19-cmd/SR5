@@ -222,7 +222,7 @@ def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que 
         c1.colorP = Color #Se setea el color del punto.
 
 #Este método recibe ahora dos paths. Uno es para el obj y el otro es para el bmp.
-def modelo(path1, path2, scale, translate, col1): #Método para cargar un modelo 3D.
+def modelo(path1, path2, scale, translate): #Método para cargar un modelo 3D.
     
     r = Object(path1) #Llamando al método Object del archivo Obj.py.
 
@@ -273,9 +273,33 @@ def modelo(path1, path2, scale, translate, col1): #Método para cargar un modelo
 
                 #print("Cara: ", f1, f2, f3, f4)
 
-                #Dibujando los triangulos.
-                triangle(col1, (v1, v2, v4), (vt1, vt2, vt4))
-                triangle(col1, (v2, v3, v4), (vt2, vt3, vt4))
+                #Guardando los vértices.
+
+                #Primer triángulo.
+
+                #Vértices normales.
+                c1.vertex_buffer_obj.append(v1)
+                c1.vertex_buffer_obj.append(v2)
+                c1.vertex_buffer_obj.append(v3)
+
+                #Vértices de textura.
+                c1.vertex_buffer_obj.append(vt1)
+                c1.vertex_buffer_obj.append(vt2)
+                c1.vertex_buffer_obj.append(vt3)
+
+                #Segundo triángulo.
+                
+                #Vértices normales.
+                c1.vertex_buffer_obj.append(v1)
+                c1.vertex_buffer_obj.append(v3)
+                c1.vertex_buffer_obj.append(v4)
+
+                #Vértices de textura.
+                c1.vertex_buffer_obj.append(vt1)
+                c1.vertex_buffer_obj.append(vt3)
+                c1.vertex_buffer_obj.append(vt4)
+
+
             
             else: #Si no hay textura, entonces se dibuja la cara sin textura.
                 #El array de caras es bidimensional en este código.
@@ -292,9 +316,17 @@ def modelo(path1, path2, scale, translate, col1): #Método para cargar un modelo
 
                 #print("Cara: ", f1, f2, f3, f4)
 
-                #Dibujando los triangulos.
-                triangle(col1, (v1, v2, v4))
-                triangle(col1, (v2, v3, v4))
+                #Guardando los vértices.
+
+                #Primer triángulo.
+                c1.vertex_buffer_obj.append(v1)
+                c1.vertex_buffer_obj.append(v2)
+                c1.vertex_buffer_obj.append(v3)
+
+                #Segundo triángulo.
+                c1.vertex_buffer_obj.append(v1)
+                c1.vertex_buffer_obj.append(v3)
+                c1.vertex_buffer_obj.append(v4)
                 
 
 
@@ -337,10 +369,18 @@ def modelo(path1, path2, scale, translate, col1): #Método para cargar un modelo
 
                 #print("Textura: ", c1.tpath) #Debuggeo.
 
-                triangle(
-                    col1, #Llamando al método triangle para dibujar un triángulo.
-                    (v1, v2, v3)
-                    ,(vt1, vt2, vt3)) 
+                #Guardando los vértices.
+
+                #Vértices normales.
+                c1.vertex_buffer_obj.append(v1)
+                c1.vertex_buffer_obj.append(v2)
+                c1.vertex_buffer_obj.append(v3)
+
+                #Vértices de textura.
+                c1.vertex_buffer_obj.append(vt1)
+                c1.vertex_buffer_obj.append(vt2)
+                c1.vertex_buffer_obj.append(vt3)
+
             else: #Si el path2 está vacío, entonces se dibuja el triángulo.
                 
                 #El array de caras es bidimensional en este código.
@@ -354,8 +394,20 @@ def modelo(path1, path2, scale, translate, col1): #Método para cargar un modelo
                 v2 = r.transform_vertex(r.vertices[f2], scale, translate)
                 v3 = r.transform_vertex(r.vertices[f3], scale, translate)
 
-                triangle(col1, (v1, v2, v3)) #Llamando al método triangle para dibujar un triángulo.
+                c1.vertex_buffer_obj.append(v1)
+                c1.vertex_buffer_obj.append(v2)
+                c1.vertex_buffer_obj.append(v3)
 
+#Mëtodo para dibujar el triángulo.
+def dibujar(poligono, col):
+    c1.active_vertex = iter(c1.vertex_buffer_obj)
+
+    if poligono == "triangle":
+        try: 
+            while True:
+                triangle(col)
+        except StopIteration:
+            print("Dibujado exitoso.")
 
 
 def cross(V1, V2): #Producto cruz entre dos vectores, pero con return de V3.
@@ -417,12 +469,16 @@ def baricentrico(A, B, C, P):
 
         return (u, v, w)
 
-def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
+def triangle(col): #Función que dibuja un triángulo.
 
-    A, B, C = vertices #Se obtienen los vértices.
+    A = next(c1.active_vertex)
+    B = next(c1.active_vertex)
+    C = next(c1.active_vertex)
 
     if c1.tpath: #Si el path2 no está vacío, entonces se dibuja el triángulo con textura.
-        tA, tB, tC = tv #Se obtienen los vértices de textura.
+        tA = next(c1.active_vertex)
+        tB = next(c1.active_vertex)
+        tC = next(c1.active_vertex)
         #print(tA, tB, tC)
 
     #print(col[0], col[1], col[2])
@@ -472,7 +528,7 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
 
     for x in range(min.x, max.x + 1):
         for y in range(min.y, max.y + 1):
-            w, v, u = baricentrico(A, B, C, V3(x, y)) #Se calcula el baricéntrico.
+            w, u, v = baricentrico(A, B, C, V3(x, y)) #Se calcula el baricéntrico.
 
             if u < 0 or v < 0 or w < 0: #Si el baricéntrico es mayor o igual a 0, entonces se dibuja el punto.
                 #print("Punto: ", x, y)
@@ -488,8 +544,8 @@ def triangle(col, vertices, tv=()): #Función que dibuja un triángulo.
                 c1.zBuffer[x][y] = z #Se setea la z.
                 
                 if c1.tpath: #Si el path2 no está vacío, entonces se dibuja el triángulo con textura.
-                    tx = tA.x * w + tB.x * v + tC.x * u #Se calcula la x de la textura.
-                    ty = tA.y * w + tB.y * v + tC.y * u #Se calcula la y de la textura.
+                    tx = tA.x * v + tB.x * w + tC.x * u #Se calcula la x de la textura.
+                    ty = tA.y * v + tB.y * w + tC.y * u #Se calcula la y de la textura.
                     c1.colorP = c2.get_color_with_intensity(tx, ty, i) #Se setea el color del punto con textura.
 
                     #print(c1.colorP)

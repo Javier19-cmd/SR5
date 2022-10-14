@@ -27,6 +27,12 @@ class Render(object):
 
     tpath = None  #Path de las texturas.
 
+    #Lista para guardar los vértices.
+    vertex_buffer_obj = []
+
+    #Lista para guardar los vértices actuales.
+    active_vertex = []
+
 
     #Método que hace el viewport del archivo.
     def View(self, posX, posY, ancho, alto):
